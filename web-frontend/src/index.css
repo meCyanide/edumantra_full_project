@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-[#f5f5f7] text-[#1d1d1f] dark:bg-[#000000] dark:text-[#f5f5f7] transition-colors duration-300;
+    }
+
+    /* Custom scrollbar with native CSS variables for maximum compiler safety */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f7;
+    }
+    .dark ::-webkit-scrollbar-track {
+        background-color: #1d1d1f;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #d2d2d7;
+        border-radius: 9999px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+        background-color: #333336;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #86868b;
+    }
+    .dark ::-webkit-scrollbar-thumb:hover {
+        background-color: #6e6e73;
+    }
+}
+
+@layer components {
+    .primary-btn {
+        @apply inline-block bg-appleGray-900 dark:bg-appleBlue text-white
+        font-medium rounded-full hover:bg-appleGray-800 dark:hover:bg-appleBlue-hover
+        py-2 px-5 text-sm transition-all duration-200 shadow-sm hover:shadow;
+    }
+
+    .primary-btn-outline {
+        @apply inline-block bg-transparent text-appleBlue hover:text-appleBlue-hover
+        font-medium py-2 px-5 text-sm transition-all duration-200 hover:underline;
+    }
+
+    .buy-now-btn {
+        @apply inline-block bg-appleBlue text-white
+        font-semibold rounded-full text-base
+        py-3.5 px-10 transition-all duration-200
+        hover:bg-appleBlue-hover
+        shadow-md hover:shadow-lg
+        tracking-tight;
+    }
+}
+
+@layer utilities {
+    .drop-shadow-mono {
+        @apply shadow-[0_20px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_40px_rgba(255,255,255,0.04)];
+    }
+
+    .text-glow {
+        text-shadow: 0 0 40px rgba(0, 113, 227, 0.15);
+    }
+
+    .border-glow {
+        @apply border-gray-100 dark:border-zinc-800 shadow-[0_0_20px_rgba(0,0,0,0.02)] dark:shadow-[0_0_20px_rgba(255,255,255,0.02)];
+    }
+
+    .white-glow {
+        @apply shadow-[0_0_60px_rgba(0,0,0,0.03)] dark:shadow-[0_0_60px_rgba(255,255,255,0.03)];
+    }
+}
