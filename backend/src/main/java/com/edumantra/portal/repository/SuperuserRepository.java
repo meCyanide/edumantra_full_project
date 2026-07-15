@@ -9,7 +9,6 @@ import java.util.Optional;
 @Repository
 public interface SuperuserRepository extends JpaRepository<Superuser, Integer> {
     Optional<Superuser> findBySuperusersemailid(String email);
-    Optional<Superuser> findBySuperusersemailidAndSuperuserspasswords(String email, String password);
     List<Superuser> findBySuperusersactiveflag(String activeFlag);
     long countBySuperusersactiveflagNot(String activeFlag);
 }
