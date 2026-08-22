@@ -5,7 +5,7 @@ import com.edumantra.portal.model.Superuser;
 import com.edumantra.portal.model.User;
 import com.edumantra.portal.repository.SuperuserRepository;
 import com.edumantra.portal.repository.UserRepository;
-import com.edumantra.portal.service.EmailService;
+// import com.edumantra.portal.service.EmailService;
 import com.edumantra.portal.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class AuthController {
     @Autowired private UserRepository userRepository;
     @Autowired private SuperuserRepository superuserRepository;
     @Autowired private TokenService tokenService;
-    @Autowired private EmailService emailService;
+    // @Autowired private EmailService emailService;
     @Autowired private PasswordEncoder passwordEncoder;   // BCryptPasswordEncoder
 
     // ── Sign-in ──────────────────────────────────────────────────────────────
@@ -97,7 +97,7 @@ public class AuthController {
             // Students are immediately active
             User user = buildUser(name, email, phone, hashedPassword, role, "Y");
             userRepository.save(user);
-            emailService.sendWelcomeEmail(email, name);
+            // emailService.sendWelcomeEmail(email, name);
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(Map.of("message", "Registration successful. You can now sign in."));
         }
@@ -152,7 +152,7 @@ public class AuthController {
                 "createdAt", LocalDateTime.now()
         ));
 
-        emailService.sendOtpEmail(email, otp);
+        // emailService.sendOtpEmail(email, otp);
         return ResponseEntity.ok(Map.of("message", "OTP sent successfully to your email"));
     }
 
