@@ -1,5 +1,6 @@
 import React from 'react'
 import Hero from '../components/Hero/Hero'
+import Courses from '../components/Courses/Courses'
 import Services from '../components/Services/Services'
 import AboutUs from '../components/AboutUs/AboutUs'
 import Testimonials from '../components/Testimonials/Testimonials'
@@ -10,6 +11,7 @@ const Home = ({ user }) => {
     return (
         <>
             <Hero user={user} />
+            <Courses />
             <Services />
             <AboutUs />
             <Testimonials />

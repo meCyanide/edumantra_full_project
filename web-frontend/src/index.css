@@ -11,70 +11,242 @@
     }
 
     body {
-        @apply bg-[#f5f5f7] text-[#1d1d1f] dark:bg-[#000000] dark:text-[#f5f5f7] transition-colors duration-300;
+        background-color: #F4F7FB;
+        color: #0F172A;
+        overflow-x: hidden;
     }
 
-    /* Custom scrollbar with native CSS variables for maximum compiler safety */
+    /* Minimal scrollbar */
     ::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
     }
     ::-webkit-scrollbar-track {
-        background-color: #f5f5f7;
-    }
-    .dark ::-webkit-scrollbar-track {
-        background-color: #1d1d1f;
+        background-color: #F1F5F9;
     }
     ::-webkit-scrollbar-thumb {
-        background-color: #d2d2d7;
+        background-color: #CBD5E1;
         border-radius: 9999px;
     }
-    .dark ::-webkit-scrollbar-thumb {
-        background-color: #333336;
-    }
     ::-webkit-scrollbar-thumb:hover {
-        background-color: #86868b;
-    }
-    .dark ::-webkit-scrollbar-thumb:hover {
-        background-color: #6e6e73;
+        background-color: #94A3B8;
     }
 }
 
 @layer components {
-    .primary-btn {
-        @apply inline-block bg-appleGray-900 dark:bg-appleBlue text-white
-        font-medium rounded-full hover:bg-appleGray-800 dark:hover:bg-appleBlue-hover
-        py-2 px-5 text-sm transition-all duration-200 shadow-sm hover:shadow;
+    /* ── Minimal Card ── */
+    .card {
+        background: #ffffff;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 1px 4px 0 rgba(15, 32, 68, 0.06);
+        border-radius: 1rem;
     }
 
-    .primary-btn-outline {
-        @apply inline-block bg-transparent text-appleBlue hover:text-appleBlue-hover
-        font-medium py-2 px-5 text-sm transition-all duration-200 hover:underline;
+    .card-hover {
+        background: #ffffff;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 1px 4px 0 rgba(15, 32, 68, 0.06);
+        border-radius: 1rem;
+        transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
 
-    .buy-now-btn {
-        @apply inline-block bg-appleBlue text-white
-        font-semibold rounded-full text-base
-        py-3.5 px-10 transition-all duration-200
-        hover:bg-appleBlue-hover
-        shadow-md hover:shadow-lg
-        tracking-tight;
+    .card-hover:hover {
+        box-shadow: 0 4px 16px 0 rgba(15, 32, 68, 0.10);
+        border-color: #BFDBFE;
+        transform: translateY(-2px);
+    }
+
+    /* ── Section Badge ── */
+    .section-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        background: #EEF3F9;
+        color: #1D4ED8;
+        border: 1px solid #CBD5E1;
+        padding: 0.25rem 0.875rem;
+        border-radius: 9999px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    /* ── Primary Button ── */
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.875rem;
+        border-radius: 0.625rem;
+        color: #ffffff;
+        background-color: #1E40AF;
+        box-shadow: 0 2px 8px 0 rgba(30, 64, 175, 0.35), 0 1px 2px 0 rgba(11, 31, 58, 0.12);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+        letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+        background-color: #1D4ED8;
+        box-shadow: 0 4px 16px 0 rgba(30, 64, 175, 0.40), 0 2px 6px 0 rgba(11, 31, 58, 0.14);
+        transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+        transform: scale(0.97);
+        box-shadow: 0 1px 4px 0 rgba(30, 64, 175, 0.30);
+    }
+
+    /* ── Navy Button ── */
+    .btn-navy {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.875rem;
+        border-radius: 0.625rem;
+        color: #ffffff;
+        background-color: #0B1F3A;
+        box-shadow: 0 2px 8px 0 rgba(11, 31, 58, 0.30), 0 1px 2px 0 rgba(11, 31, 58, 0.12);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+        letter-spacing: 0.01em;
+    }
+
+    .btn-navy:hover {
+        background-color: #1D4ED8;
+        box-shadow: 0 4px 16px 0 rgba(11, 31, 58, 0.35), 0 2px 6px 0 rgba(11, 31, 58, 0.14);
+        transform: translateY(-1px);
+    }
+
+    .btn-navy:active {
+        transform: scale(0.97);
+        box-shadow: 0 1px 4px 0 rgba(11, 31, 58, 0.22);
+    }
+
+    /* ── Amber / Gold Button ── */
+    .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.875rem;
+        border-radius: 0.625rem;
+        color: #0B1F3A;
+        background-color: #F3C41A;
+        box-shadow: 0 2px 8px 0 rgba(243, 196, 26, 0.40), 0 1px 2px 0 rgba(11, 31, 58, 0.10);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+        letter-spacing: 0.01em;
+    }
+
+    .btn-gold:hover {
+        background-color: #D99A24;
+        color: #ffffff;
+        box-shadow: 0 4px 16px 0 rgba(217, 154, 36, 0.45), 0 2px 6px 0 rgba(11, 31, 58, 0.10);
+        transform: translateY(-1px);
+    }
+
+    .btn-gold:active {
+        transform: scale(0.97);
+        box-shadow: 0 1px 4px 0 rgba(217, 154, 36, 0.30);
+    }
+
+    /* ── Outline Button (replaces btn-glass) ── */
+    .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.875rem;
+        border-radius: 0.5rem;
+        color: #0B1F3A;
+        background-color: #ffffff;
+        border: 1.5px solid #E2E8F0;
+        box-shadow: 0 1px 3px 0 rgba(11, 31, 58, 0.06);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-outline:hover {
+        border-color: #CBD5E1;
+        box-shadow: 0 3px 10px 0 rgba(11, 31, 58, 0.10);
+        transform: translateY(-1px);
+    }
+
+    .btn-outline:active {
+        transform: scale(0.97);
+    }
+
+    /* Keep btn-glass as alias for btn-outline for backward compat */
+    .btn-glass {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.875rem;
+        border-radius: 0.5rem;
+        color: #0B1F3A;
+        background-color: #ffffff;
+        border: 1.5px solid #E2E8F0;
+        box-shadow: 0 1px 3px 0 rgba(11, 31, 58, 0.06);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-glass:hover {
+        border-color: #CBD5E1;
+        box-shadow: 0 3px 10px 0 rgba(11, 31, 58, 0.10);
+        transform: translateY(-1px);
+    }
+
+    .btn-glass:active {
+        transform: scale(0.97);
+    }
+
+    /* ── Legacy glass-panel → maps to clean card ── */
+    .glass-panel {
+        background: #ffffff;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 1px 4px 0 rgba(15, 32, 68, 0.06);
+    }
+
+    .glass-panel-hover {
+        background: #ffffff;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 1px 4px 0 rgba(15, 32, 68, 0.06);
+        transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .glass-panel-hover:hover {
+        box-shadow: 0 4px 16px 0 rgba(15, 32, 68, 0.10);
+        border-color: #BFDBFE;
+        transform: translateY(-2px);
+    }
+
+    .glass-card-dark {
+        background: #0F2044;
+        border: 1px solid #1B3556;
+        box-shadow: 0 4px 12px 0 rgba(7, 21, 42, 0.30);
+    }
+
+    .glass-badge {
+        background: #F1F5F9;
+        border: 1px solid #E2E8F0;
+    }
+
+    .glass-badge-gold {
+        background: #FEF9E7;
+        border: 1px solid #F3C969;
+        color: #B8801B;
+    }
+
+    .glass-badge-blue {
+        background: #EEF3F9;
+        border: 1px solid #CBD5E1;
+        color: #1D4ED8;
     }
 }
 
 @layer utilities {
-    .drop-shadow-mono {
-        @apply shadow-[0_20px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_40px_rgba(255,255,255,0.04)];
-    }
-
-    .text-glow {
-        text-shadow: 0 0 40px rgba(0, 113, 227, 0.15);
-    }
-
-    .border-glow {
-        @apply border-gray-100 dark:border-zinc-800 shadow-[0_0_20px_rgba(0,0,0,0.02)] dark:shadow-[0_0_20px_rgba(255,255,255,0.02)];
-    }
-
-    .white-glow {
-        @apply shadow-[0_0_60px_rgba(0,0,0,0.03)] dark:shadow-[0_0_60px_rgba(255,255,255,0.03)];
+    /* Removed glass-blur — kept as no-op for compatibility */
+    .glass-blur {
+        /* intentionally empty — glassmorphism removed */
     }
 }

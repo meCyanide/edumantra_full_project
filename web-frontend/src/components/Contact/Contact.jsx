@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { motion as Motion } from 'framer-motion';
-import { HiOutlineEnvelope, HiOutlinePhone, HiOutlineMapPin } from 'react-icons/hi2';
+import { HiOutlineEnvelope, HiOutlinePhone, HiOutlineMapPin, HiOutlineChatBubbleLeftRight } from 'react-icons/hi2';
 import { IoIosArrowRoundForward } from 'react-icons/io';
-import { PiSphereFill, PiCubeFill } from 'react-icons/pi';
 
 const info = [
     { icon: <HiOutlineEnvelope />, label: "Email Us", value: "support@edumantra.in" },
-    { icon: <HiOutlinePhone />, label: "Call Us", value: "+91 98765 43210" },
-    { icon: <HiOutlineMapPin />, label: "Visit Us", value: "Kolkata, West Bengal, India" },
+    { icon: <HiOutlinePhone />, label: "Counseling Hotline", value: "+91 98765 43210" },
+    { icon: <HiOutlineMapPin />, label: "Academy Location", value: "Salt Lake Sector V, Kolkata, India" },
 ];
 
-const inputClass = "w-full bg-appleGray-50 dark:bg-appleGray-900 border border-appleGray-100 dark:border-appleGray-800 rounded-2xl px-4 py-3 text-sm text-appleGray-900 dark:text-white placeholder-appleGray-400 focus:outline-none focus:ring-1 focus:ring-appleBlue transition-all duration-200";
+const inputClass = "w-full bg-bg-surfaceAlt border border-border rounded-lg px-4 py-3 text-sm text-txt-primary placeholder-txt-muted focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary transition-all duration-200";
 
 const Contact = () => {
     const [sent, setSent] = useState(false);
@@ -22,100 +21,99 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className='relative bg-[#f5f5f7] dark:bg-[#000000] border-t border-appleGray-100 dark:border-appleGray-800 overflow-hidden py-20 transition-colors duration-300'>
-            {/* Decorative blobs */}
-            <div className='absolute top-0 right-0 w-80 h-80 bg-appleBlue/[0.01] rounded-full blur-3xl pointer-events-none translate-x-1/3 -translate-y-1/3' />
-            <div className='absolute bottom-0 left-0 w-96 h-96 bg-appleBlue/[0.01] rounded-full blur-3xl pointer-events-none -translate-x-1/3 translate-y-1/3' />
-
-            {/* Floating 3D shapes in monochrome */}
-            <div className='absolute inset-0 pointer-events-none hidden lg:block'>
-                <Motion.div animate={{ y: [0, 20, 0], rotate: [0, 12, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} className='absolute top-16 right-[8%] text-appleBlue/[0.03] text-6xl'>
-                    <PiSphereFill />
-                </Motion.div>
-                <Motion.div animate={{ y: [0, -20, 0], rotate: [0, -15, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }} className='absolute bottom-20 right-[12%] text-appleBlue/[0.03] text-5xl'>
-                    <PiCubeFill />
-                </Motion.div>
-            </div>
-
-            <div className='container relative z-10'>
+        <section id="contact" className='bg-bg-surfaceAlt border-t border-border py-24'>
+            <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
                 {/* Header */}
                 <Motion.div
-                    initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-                    className='text-center mb-14'
+                    initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+                    className='text-center mb-16'
                 >
-                    <span className='inline-block bg-white dark:bg-white/5 text-appleGray-400 dark:text-appleGray-300 border border-appleGray-100 dark:border-white/10 text-xs font-semibold px-4 py-1.5 rounded-full mb-4 shadow-sm'>Get In Touch</span>
-                    <h2 className='text-3xl sm:text-4xl font-extrabold tracking-tight text-appleGray-900 dark:text-white mb-4'>
-                        Contact Us
+                    <div className='section-badge mb-4'>
+                        <HiOutlineChatBubbleLeftRight className="text-brand-secondary text-base" />
+                        Personalized Counseling
+                    </div>
+                    <h2 className='text-3xl sm:text-4xl font-extrabold tracking-tight text-brand-primary mb-4'>
+                        Get in Touch with Our Mentors
                     </h2>
-                    <p className='text-appleGray-400 dark:text-appleGray-300 max-w-xl mx-auto text-sm sm:text-base'>
-                        Have a question or want to enrol? We'd love to hear from you. Drop us a message and we'll get back within 24 hours.
+                    <p className='text-txt-secondary max-w-2xl mx-auto text-sm sm:text-base leading-relaxed'>
+                        Have queries about batch schedules, course structure, or strategy? Fill out the form or reach us directly.
                     </p>
                 </Motion.div>
 
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 items-start'>
 
                     {/* Left — Info */}
-                    <div className='space-y-5'>
+                    <div className='space-y-4'>
                         {info.map((item, i) => (
                             <Motion.div
                                 key={i}
-                                initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 }}
-                                className='flex items-center gap-5 bg-white dark:bg-appleGray-950 rounded-3xl p-5 shadow-[0_10px_30px_rgba(0,0,0,0.02)] dark:shadow-[0_10px_30px_rgba(255,255,255,0.005)] border border-appleGray-100 dark:border-appleGray-800 hover:shadow-[0_10px_35px_rgba(0,0,0,0.03)] dark:hover:shadow-none transition-shadow duration-300'
+                                initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}
+                                className='flex items-center gap-5 bg-white border border-border rounded-2xl p-5 shadow-card hover:shadow-card-hover hover:border-border-hover transition-all duration-250'
                             >
-                                <div className='w-11 h-11 rounded-xl bg-appleGray-50 dark:bg-white/5 text-appleBlue flex items-center justify-center text-lg shrink-0 shadow-sm'>
+                                <div className='w-11 h-11 rounded-xl bg-bg-surfaceAlt border border-border text-brand-secondary flex items-center justify-center text-xl shrink-0'>
                                     {item.icon}
                                 </div>
                                 <div className="text-left">
-                                    <p className='text-xs text-appleGray-400 dark:text-appleGray-500 font-medium mb-0.5'>{item.label}</p>
-                                    <p className='text-sm font-semibold text-appleGray-900 dark:text-white'>{item.value}</p>
+                                    <p className='text-xs text-txt-secondary font-semibold mb-0.5'>{item.label}</p>
+                                    <p className='text-sm font-bold text-brand-primary'>{item.value}</p>
                                 </div>
                             </Motion.div>
                         ))}
 
-                        {/* Map placeholder */}
+                        {/* Campus badge */}
                         <Motion.div
-                            initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }}
-                            className='w-full h-44 rounded-3xl bg-white dark:bg-appleGray-950 border border-appleGray-100 dark:border-appleGray-800 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.02)] dark:shadow-none overflow-hidden hover:shadow-[0_10px_35px_rgba(0,0,0,0.03)] dark:hover:shadow-none transition-shadow duration-300'
+                            initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.3 }}
+                            className='w-full h-44 bg-white border border-border rounded-2xl shadow-card flex flex-col items-center justify-center p-6 text-center'
                         >
-                            <span className='text-appleGray-400 text-sm font-medium'>📍 Kolkata, West Bengal</span>
+                            <div className="w-10 h-10 rounded-xl bg-brand-primary text-brand-accentLight flex items-center justify-center text-lg mb-3">
+                                📍
+                            </div>
+                            <h4 className="text-sm font-bold text-brand-primary">Kolkata Head Learning Centre</h4>
+                            <p className="text-xs text-txt-secondary mt-1 max-w-xs">Salt Lake City, Sector V, Kolkata, West Bengal, 700091</p>
                         </Motion.div>
                     </div>
 
                     {/* Right — Form */}
                     <Motion.form
-                        initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+                        initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
                         onSubmit={handleSubmit}
-                        className='bg-white dark:bg-appleGray-950 rounded-3xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.02)] dark:shadow-none border border-appleGray-100 dark:border-appleGray-800 space-y-5 transition-shadow duration-300'
+                        className='bg-white border border-border rounded-2xl p-8 sm:p-10 shadow-card space-y-5'
                     >
                         <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
                             <div className="text-left">
-                                <label className='text-xs font-semibold text-appleGray-400 mb-1.5 block'>Full Name</label>
+                                <label className='text-xs font-bold text-brand-primary mb-1.5 block'>Full Name</label>
                                 <input type='text' placeholder='Priya Sharma' className={inputClass} required />
                             </div>
                             <div className="text-left">
-                                <label className='text-xs font-semibold text-appleGray-400 mb-1.5 block'>Email Address</label>
-                                <input type='email' placeholder='you@example.com' className={inputClass} required />
+                                <label className='text-xs font-bold text-brand-primary mb-1.5 block'>Email Address</label>
+                                <input type='email' placeholder='priya@example.com' className={inputClass} required />
                             </div>
                         </div>
 
                         <div className="text-left">
-                            <label className='text-xs font-semibold text-appleGray-400 mb-1.5 block'>Subject</label>
-                            <input type='text' placeholder='I want to enrol for WBCS course' className={inputClass} required />
+                            <label className='text-xs font-bold text-brand-primary mb-1.5 block'>Target Exam</label>
+                            <select className={inputClass} required defaultValue="">
+                                <option value="" disabled>Select your primary goal</option>
+                                <option value="wbcs">WBCS (Executive / General)</option>
+                                <option value="upsc">UPSC / IAS / IFS</option>
+                                <option value="ips">IPS (Police Service)</option>
+                                <option value="ssc">SSC (CGL / CHSL)</option>
+                            </select>
                         </div>
 
                         <div className="text-left">
-                            <label className='text-xs font-semibold text-appleGray-400 mb-1.5 block'>Message</label>
-                            <textarea rows={5} placeholder='Tell us how we can help you...' className={`${inputClass} resize-none`} required />
+                            <label className='text-xs font-bold text-brand-primary mb-1.5 block'>Message / Doubt</label>
+                            <textarea rows={4} placeholder='Tell us your background and how our mentors can guide you...' className={`${inputClass} resize-none`} required />
                         </div>
 
                         <Motion.button
                             type='submit'
                             whileHover={{ scale: 1.01 }}
-                            whileTap={{ scale: 0.99 }}
-                            className='w-full bg-appleBlue text-white hover:bg-appleBlue-hover rounded-2xl font-bold flex items-center justify-center gap-1.5 group transition-all py-3.5 text-base shadow-sm hover:shadow'
+                            whileTap={{ scale: 0.98 }}
+                            className='w-full btn-primary py-3.5 text-sm gap-2'
                         >
-                            {sent ? 'Message Sent!' : (
-                                <>Send Message <IoIosArrowRoundForward className='text-2xl group-hover:translate-x-1.5 transition-transform duration-200' /></>
+                            {sent ? 'Message Received! Mentor will call soon.' : (
+                                <>Submit Inquiry <IoIosArrowRoundForward className='text-xl' /></>
                             )}
                         </Motion.button>
                     </Motion.form>

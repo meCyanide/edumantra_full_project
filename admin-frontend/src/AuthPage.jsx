@@ -10,7 +10,9 @@ const setAuthCookie = (user) => {
 };
 
 function AuthPage({ setAuth }) {
-  const [mode, setMode] = useState('signin');
+  const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const initialMode = searchParams && (searchParams.get('mode') === 'signup' || searchParams.get('redirect') === 'signup' || searchParams.get('type') === 'signup') ? 'signup' : 'signin';
+  const [mode, setMode] = useState(initialMode);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');

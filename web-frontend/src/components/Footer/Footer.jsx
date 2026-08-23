@@ -7,6 +7,7 @@ import { IoIosArrowRoundForward } from 'react-icons/io';
 const links = {
     "Quick Links": [
         { label: "Home", href: "/" },
+        { label: "Courses", href: "/#courses" },
         { label: "Services", href: "/#services" },
         { label: "About Us", href: "/#about" },
         { label: "Our Team", href: "/#team" },
@@ -14,17 +15,17 @@ const links = {
     ],
     "Exam Prep": [
         { label: "WBCS Preparation", href: "/working" },
-        { label: "UPSC / IAS", href: "/working" },
-        { label: "IPS Preparation", href: "/working" },
-        { label: "SSC Exams", href: "/working" },
+        { label: "UPSC / IAS Coaching", href: "/working" },
+        { label: "IPS Specialized Track", href: "/working" },
+        { label: "SSC All-Tier Series", href: "/working" },
         { label: "Live Mock Tests", href: "/working" },
     ],
-    "Support": [
-        { label: "FAQ", href: "/working" },
+    "Support & Trust": [
+        { label: "Student FAQs", href: "/working" },
         { label: "Privacy Policy", href: "/working" },
         { label: "Terms of Service", href: "/working" },
-        { label: "Refund Policy", href: "/working" },
-        { label: "Grievance", href: "/working" },
+        { label: "Fee Refund Policy", href: "/working" },
+        { label: "Grievance Redressal", href: "/working" },
     ],
 };
 
@@ -49,38 +50,39 @@ const Footer = () => {
     };
 
     return (
-        <footer className='relative bg-[#f5f5f7] dark:bg-[#000000] text-appleGray-400 dark:text-appleGray-500 overflow-hidden border-t border-appleGray-100 dark:border-appleGray-800 transition-colors duration-300'>
-            {/* Top divider accent */}
-            <div className='h-[1px] w-full bg-gradient-to-r from-transparent via-appleGray-200 dark:via-appleGray-800 to-transparent' />
+        <footer className='bg-[#0B1F3A] text-white border-t border-blue-900/40'>
+            {/* Top amber accent line */}
+            <div className='h-[2px] w-full bg-gradient-to-r from-transparent via-brand-accent to-transparent' />
 
-            <div className='container relative z-10 pt-16 pb-8'>
+            <div className='container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8'>
 
                 {/* Main grid */}
-                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-appleGray-200 dark:border-appleGray-800'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-blue-800/40'>
 
-                    {/* Brand column — spans 2 cols on lg */}
+                    {/* Brand column */}
                     <div className='lg:col-span-2 space-y-5 text-left'>
                         {/* Logo */}
-                        <div className='flex items-center gap-2'>
-                            <div className='w-8 h-8 rounded-lg bg-black dark:bg-white flex items-center justify-center text-white dark:text-black text-lg shadow-sm'>
-                                <HiAcademicCap />
+                        <div className='flex items-center gap-2.5'>
+                            <div className='w-9 h-9 rounded-lg bg-blue-600 border border-white/20 flex items-center justify-center text-white text-xl'>
+                                <HiAcademicCap className="text-brand-accentLight" />
                             </div>
-                            <span className='text-appleGray-900 dark:text-white text-lg font-bold tracking-tight'>EduMantra</span>
+                            <span className='text-white text-xl font-extrabold tracking-tight'>
+                                Edu<span className='text-blue-400'>Mantra</span>
+                            </span>
                         </div>
 
-                        <p className='text-xs sm:text-sm leading-relaxed max-w-xs text-appleGray-400 dark:text-appleGray-400'>
-                            India's trusted exam preparation platform for WBCS, IAS, IPS &amp; SSC —
-                            empowering aspirants with expert mentorship and smart study tools since 2016.
+                        <p className='text-xs sm:text-sm leading-relaxed max-w-xs text-white/90 font-normal'>
+                            India's trusted civil services mentorship institute for WBCS, UPSC, IPS &amp; SSC. Empowering thousands of career aspirants with officer guidance and smart analytics.
                         </p>
 
                         {/* Social icons */}
-                        <div className='flex gap-2.5 flex-wrap'>
+                        <div className='flex gap-2.5 flex-wrap pt-1'>
                             {socials.map((s) => (
                                 <a
                                     key={s.label}
                                     href={s.href}
                                     aria-label={s.label}
-                                    className='w-8 h-8 rounded-lg bg-white dark:bg-white/5 border border-appleGray-200 dark:border-white/10 flex items-center justify-center text-xs text-appleGray-400 dark:text-appleGray-300 transition-all duration-200 hover:bg-appleBlue dark:hover:bg-appleBlue hover:text-white dark:hover:text-white hover:scale-105 shadow-sm'
+                                    className='w-9 h-9 rounded-lg bg-white/15 hover:bg-blue-600 border border-white/20 flex items-center justify-center text-xs text-white hover:text-white transition-all duration-200 hover:scale-105'
                                 >
                                     {s.icon}
                                 </a>
@@ -88,40 +90,40 @@ const Footer = () => {
                         </div>
 
                         {/* Newsletter */}
-                        <div className='mt-2'>
-                            <p className='text-appleGray-900 dark:text-white text-xs font-semibold mb-2.5'>Get free exam tips in your inbox</p>
-                            <form onSubmit={handleSubscribe} className='flex gap-2 max-w-xs'>
+                        <div className='mt-2 p-4 rounded-xl bg-white/10 border border-white/20 max-w-sm'>
+                            <p className='text-white text-xs font-bold mb-2.5'>Get weekly exam briefs &amp; GK dossiers</p>
+                            <form onSubmit={handleSubscribe} className='flex gap-2'>
                                 <input
                                     type='email'
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    placeholder='you@example.com'
-                                    className='flex-1 min-w-0 bg-white dark:bg-appleGray-900 border border-appleGray-200 dark:border-appleGray-800 rounded-xl px-3.5 py-2 text-xs text-appleGray-900 dark:text-white placeholder-appleGray-300 dark:placeholder-appleGray-600 focus:outline-none focus:ring-1 focus:ring-appleBlue transition-all'
+                                    placeholder='your.email@example.com'
+                                    className='flex-1 min-w-0 bg-white/15 border border-white/25 rounded-lg px-3.5 py-2 text-xs text-white placeholder-white/60 focus:outline-none focus:ring-1 focus:ring-blue-400 transition-all'
                                     required
                                 />
                                 <Motion.button
                                     type='submit'
-                                    whileHover={{ scale: 1.02 }}
+                                    whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.96 }}
-                                    className='px-3.5 py-2 bg-appleBlue text-white rounded-xl text-xs font-semibold shrink-0 shadow-sm transition-all hover:bg-appleBlue-hover'
+                                    className='px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-bold shrink-0 transition-all'
                                 >
                                     {subscribed ? '✓' : <IoIosArrowRoundForward className='text-lg' />}
                                 </Motion.button>
                             </form>
-                            {subscribed && <p className='text-appleBlue text-[11px] mt-2 font-medium'>🎉 Subscribed! Check your inbox.</p>}
+                            {subscribed && <p className='text-brand-accentLight text-[11px] mt-2 font-medium'>🎉 Subscribed! Check your inbox soon.</p>}
                         </div>
                     </div>
 
                     {/* Nav columns */}
                     {Object.entries(links).map(([title, items]) => (
                         <div key={title} className='space-y-4 text-left'>
-                            <h4 className='text-appleGray-900 dark:text-white font-semibold text-xs uppercase tracking-wider'>{title}</h4>
-                            <ul className='space-y-2'>
+                            <h4 className='text-white font-extrabold text-xs uppercase tracking-wider'>{title}</h4>
+                            <ul className='space-y-2.5'>
                                 {items.map((item) => (
                                     <li key={item.label}>
                                         <a
                                             href={item.href}
-                                            className='text-xs sm:text-sm text-appleGray-400 dark:text-appleGray-400 hover:text-appleBlue dark:hover:text-appleBlue hover:underline transition-all duration-200 block'
+                                            className='text-xs sm:text-sm text-white/90 hover:text-white hover:underline transition-all duration-200 block font-normal'
                                         >
                                             {item.label}
                                         </a>
@@ -133,16 +135,11 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom bar */}
-                <div className='pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-appleGray-400 dark:text-appleGray-500'>
-                    <p>© {new Date().getFullYear()} EduMantra. All rights reserved.</p>
-                    <p>
-                        Made with{' '}
-                        <span className='text-rose-500 text-sm'>♥</span>{' '}
-                        in Kolkata, India
-                    </p>
-                    <div className='flex gap-4'>
-                        {["Privacy Policy", "Terms", "Refund Policy"].map((t) => (
-                            <a key={t} href='#' className='hover:text-appleBlue transition-colors duration-200'>{t}</a>
+                <div className='pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/80'>
+                    <p>© {new Date().getFullYear()} EduMantra Civil Services. All rights reserved.</p>
+                    <div className='flex gap-5 text-xs text-white/80'>
+                        {["Privacy Policy", "Terms of Use", "Refund Policy"].map((t) => (
+                            <a key={t} href='/working' className='hover:text-white underline transition-colors duration-200'>{t}</a>
                         ))}
                     </div>
                 </div>

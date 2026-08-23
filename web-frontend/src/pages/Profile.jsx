@@ -1,15 +1,20 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { HiAcademicCap, HiSparkles, HiShieldCheck } from 'react-icons/hi2';
 
 const Profile = ({ user, setUser }) => {
     const navigate = useNavigate();
 
-    // If no user, redirect or show message
     if (!user) {
         return (
-            <div className="min-h-[60vh] flex items-center justify-center">
-                <p className="text-lg text-gray-500 dark:text-gray-400">Please sign in to view your profile.</p>
+            <div className="min-h-[60vh] flex items-center justify-center bg-bg-page pt-20">
+                <div className="bg-white p-8 rounded-2xl border border-border shadow-card text-center max-w-sm mx-4">
+                    <p className="text-base text-txt-secondary font-medium mb-4">Please sign in to view your profile.</p>
+                    <button onClick={() => navigate('/signin')} className="btn-primary py-2.5 px-6 text-sm">
+                        Sign In Now
+                    </button>
+                </div>
             </div>
         );
     }
@@ -17,55 +22,64 @@ const Profile = ({ user, setUser }) => {
     const handleLogout = () => {
         setUser(null);
         localStorage.removeItem('edumantra_user');
+        document.cookie = 'edumantra_user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
         navigate('/');
     };
 
-    const roleLabel = user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'User';
+    const roleLabel = user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'Student';
     const phoneValue = user.phone || user.phonenumber || 'Not provided';
 
     return (
-        <div className="min-h-[70vh] py-20 px-4 bg-gray-50 dark:bg-slate-950">
-            <div className="container max-w-3xl mx-auto">
+        <div className="min-h-[80vh] pt-28 pb-20 px-4 bg-bg-page">
+
+            <div className="container max-w-3xl mx-auto relative z-10">
                 <Motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-gray-100 dark:border-white/10 p-8 sm:p-12 relative overflow-hidden"
+                    className="bg-white rounded-2xl shadow-card-hover border border-border p-8 sm:p-12"
                 >
-                    {/* Background blob */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-
-                    <div className="flex flex-col sm:flex-row items-center gap-8 border-b border-gray-100 dark:border-white/10 pb-8 mb-8 relative z-10">
-                        <img src={user.avatar} alt="Profile" className="w-32 h-32 rounded-full ring-4 ring-secondary/20 shadow-lg bg-gray-50 dark:bg-slate-800" />
+                    <div className="flex flex-col sm:flex-row items-center gap-8 border-b border-border pb-8 mb-8 relative z-10">
+                        <div className="relative">
+                            <img src={user.avatar} alt="Profile" className="w-28 h-28 rounded-2xl ring-4 ring-brand-secondary/20 shadow-glass object-cover bg-bg-surfaceAlt" />
+                            <div className="absolute -bottom-2 -right-2 w-7 h-7 rounded-lg bg-brand-primary text-brand-accentLight flex items-center justify-center text-sm shadow-glass-sm">
+                                <HiShieldCheck />
+                            </div>
+                        </div>
                         <div className="text-center sm:text-left">
-                            <h1 className="text-3xl font-extrabold text-gray-800 dark:text-white mb-2">{user.name}</h1>
-                            <span className="inline-block bg-secondary/10 text-secondary px-4 py-1.5 rounded-full text-sm font-semibold">{roleLabel} Account</span>
+                            <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                                <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-primary">{user.name}</h1>
+                            </div>
+                            <span className="inline-flex items-center gap-1.5 bg-brand-secondary/10 text-brand-secondary px-3.5 py-1 rounded-full text-xs font-bold border border-brand-secondary/20">
+                                <HiSparkles className="text-xs text-brand-accent" />
+                                {roleLabel} Account
+                            </span>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 relative z-10">
-                        <div className="bg-gray-50 dark:bg-slate-800 p-5 rounded-2xl border border-gray-100 dark:border-white/5">
-                            <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">Email Address</p>
-                            <p className="text-lg font-semibold text-gray-800 dark:text-white">{user.email}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10 relative z-10">
+                        <div className="bg-bg-surfaceAlt p-5 rounded-xl border border-border">
+                            <p className="text-xs text-txt-secondary font-semibold mb-1">Email Address</p>
+                            <p className="text-base font-bold text-brand-primary break-all">{user.email}</p>
                         </div>
-                        <div className="bg-gray-50 dark:bg-slate-800 p-5 rounded-2xl border border-gray-100 dark:border-white/5">
-                            <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">Phone Number</p>
-                            <p className="text-lg font-semibold text-gray-800 dark:text-white">{phoneValue}</p>
+                        <div className="bg-bg-surfaceAlt p-5 rounded-xl border border-border">
+                            <p className="text-xs text-txt-secondary font-semibold mb-1">Contact Number</p>
+                            <p className="text-base font-bold text-brand-primary">{phoneValue}</p>
                         </div>
-                        <div className="bg-gray-50 dark:bg-slate-800 p-5 rounded-2xl border border-gray-100 dark:border-white/5">
-                            <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">Enrolled Courses</p>
-                            <p className="text-lg font-semibold text-gray-800 dark:text-white">0 (New Account)</p>
+                        <div className="bg-bg-surfaceAlt p-5 rounded-xl border border-border">
+                            <p className="text-xs text-txt-secondary font-semibold mb-1">Enrolled Courses</p>
+                            <p className="text-base font-bold text-brand-primary">WBCS / UPSC Comprehensive Track</p>
                         </div>
-                        <div className="bg-gray-50 dark:bg-slate-800 p-5 rounded-2xl border border-gray-100 dark:border-white/5">
-                            <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">Join Date</p>
-                            <p className="text-lg font-semibold text-gray-800 dark:text-white">Today</p>
+                        <div className="bg-bg-surfaceAlt p-5 rounded-xl border border-border">
+                            <p className="text-xs text-txt-secondary font-semibold mb-1">Membership Status</p>
+                            <p className="text-base font-bold text-status-success">Active Subscriber</p>
                         </div>
                     </div>
 
-                    <div className="flex justify-end gap-4 relative z-10">
+                    <div className="flex justify-end gap-4 relative z-10 pt-4 border-t border-border">
                         <button
                             onClick={handleLogout}
-                            className="px-6 py-2.5 rounded-xl border-2 border-red-100 dark:border-red-900/50 text-red-500 font-semibold hover:bg-red-50 dark:hover:bg-red-900/20 transition-all active:scale-95"
+                            className="px-6 py-2.5 rounded-xl border border-status-error/30 text-status-error font-bold hover:bg-status-error/10 transition-all active:scale-95 text-sm"
                         >
                             Log Out
                         </button>

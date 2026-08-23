@@ -9,14 +9,26 @@ import Profile from './pages/Profile'
 const RedirectToAdmin = () => {
   useEffect(() => {
     const adminUrl = import.meta.env.VITE_ADMIN_APP_URL || 'http://3.111.191.254:5470';
-    const target = `${adminUrl}/?redirect=signin`;
+    const baseUrl = adminUrl.endsWith('/') ? adminUrl.slice(0, -1) : adminUrl;
+    const target = `${baseUrl}/?mode=signin`;
     window.location.replace(target);
   }, []);
 
   return null;
 };
 
-const Layout = ({ user, setUser, theme, toggleTheme }) => {
+const RedirectToSignup = () => {
+  useEffect(() => {
+    const adminUrl = import.meta.env.VITE_ADMIN_APP_URL || 'http://3.111.191.254:5470';
+    const baseUrl = adminUrl.endsWith('/') ? adminUrl.slice(0, -1) : adminUrl;
+    const target = `${baseUrl}/?mode=signup`;
+    window.location.replace(target);
+  }, []);
+
+  return null;
+};
+
+const Layout = ({ user, setUser }) => {
   const location = useLocation();
   const hideFooterRoutes = ["/working"];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
@@ -27,14 +39,15 @@ const Layout = ({ user, setUser, theme, toggleTheme }) => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] font-inter transition-colors duration-300">
+    <div className="flex flex-col min-h-screen bg-edu-bg text-edu-text font-inter transition-colors duration-300">
       <main className="flex-1">
-        <Navbar user={user} setUser={setUser} theme={theme} toggleTheme={toggleTheme} />
+        <Navbar user={user} setUser={setUser} />
         <div className="pt-0">
           <Routes>
             <Route path="/" element={<Home user={user} />} />
             <Route path="/working" element={<BusyDevelopers />} />
             <Route path="/signin" element={<RedirectToAdmin />} />
+            <Route path="/signup" element={<RedirectToSignup />} />
             <Route path="/profile" element={<Profile user={user} setUser={setUser} />} />
           </Routes>
         </div>
@@ -50,35 +63,15 @@ const App = () => {
     const saved = localStorage.getItem('edumantra_user');
     return saved ? JSON.parse(saved) : null;
   });
-  const [theme, setTheme] = useState(() => {
-    // Initial theme check
-    const stored = localStorage.getItem('theme');
-    if (stored) return stored;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
-
-  // Apply class on load/change
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
 
   // Handle cross-page hash routing by making scroll behavior smooth across the entire app
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
   }, []);
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
-
   return (
     <BrowserRouter>
-      <Layout user={user} setUser={setUser} theme={theme} toggleTheme={toggleTheme} />
+      <Layout user={user} setUser={setUser} />
     </BrowserRouter>
   )
 }
